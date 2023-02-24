@@ -62,7 +62,7 @@ export default function Card(props) {
               </div>
             </div>
             <p className="text-danger text-center" style={{ fontSize: "13px" }}>
-              We'll schedule the slots as per your convenience
+              We&apos;ll schedule the slots as per your convenience
             </p>
           </div>
           <div style={{ fontWeight: "600" }}>
