@@ -28,7 +28,7 @@ export default function Card(props) {
           }}
         >
           <div className={`rounded text-lato ${bgColorLightClass}`}>
-            <div className="row d-flex align-items-center justify-content-between">
+            <div className="row">
               <div className="col-8 border-0">
                 <div
                   className={`${bgColorDarkClass} px-3 py-2 d-flex align-items-center fs-7 fw-bold ${textLightColor}`}
