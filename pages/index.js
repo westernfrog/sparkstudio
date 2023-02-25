@@ -19,22 +19,25 @@ export default function Home() {
     activeButton === "one" ? filterCardsByAge(5, 9) : filterCardsByAge(10, 15);
 
   return (
-    <div className="container mx-auto my-5">
-      <div className="text-center text-poppins">
+    <div className="container my-5">
+      <div className="text-poppins d-flex justify-content-center">
         <button
           className={`btn bg-light-blue me-4 p-4 fw-bold ${
             activeButton === "one" ? "active" : ""
           }`}
+          style={{ fontSize: "18px" }}
           onClick={() => handleButtonClick("one")}
         >
           Junior
           <br />
           <span className="fw-light">(Age 6-10)</span>
         </button>
+
         <button
           className={`btn bg-light-blue ms-4 p-4 fw-bold ${
             activeButton === "two" ? "active" : ""
           }`}
+          style={{ fontSize: "18px" }}
           onClick={() => handleButtonClick("two")}
         >
           Senior
@@ -42,7 +45,7 @@ export default function Home() {
           <span className="fw-light">(Age 10-15)</span>
         </button>
       </div>
-      <div className="row d-flex align-items-center justify-content-center my-4 gap-5">
+      <div className="row d-flex justify-content-center my-4 gap-5">
         {activeCards.map((card) => (
           <Card
             key={card.id}

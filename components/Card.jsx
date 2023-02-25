@@ -1,35 +1,92 @@
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Card(props) {
+  const [isLightHovered, setIsLightHovered] = useState(false);
+  const [isDarkHovered, setIsDarkHovered] = useState(false);
+
+  const ribbonColor = isLightHovered ? "#905cff" : "#dcccff";
+
+  const bgColorDarkClass = isDarkHovered ? "bg-light-blue" : "bg-dark-blue";
+  const bgColorLightClass = isLightHovered ? "bg-dark-blue" : "bg-light-blue";
+
+  const textLightColor = isLightHovered ? "text-black" : "text-white";
+  const textDarkColor = isDarkHovered ? "text-white" : "text-purple";
+
   return (
     <>
       <div className="col-md-3 px-2 px-lg-0 my-5">
-        <div className="card shadow rounded-3 bg-safed border-0 card-grow">
-          <div className="row d-flex align-items-center justify-content-between text-lato bg-light-blue g-0 rounded-top">
-            <div className="col-8 border-0">
-              <div className="ribbon px-3 py-2 d-flex align-items-center fs-7 text-white">
-                {props.class} Sessions
+        <div
+          className="card shadow rounded-3 bg-safed border-0 card-grow"
+          onMouseEnter={() => {
+            setIsLightHovered(true);
+            setIsDarkHovered(true);
+          }}
+          onMouseLeave={() => {
+            setIsLightHovered(false);
+            setIsDarkHovered(false);
+          }}
+        >
+          <div className={`rounded text-lato ${bgColorLightClass}`}>
+            <div className="row d-flex align-items-center justify-content-between">
+              <div className="col-8 border-0">
+                <div
+                  className={`${bgColorDarkClass} px-3 py-2 d-flex align-items-center fs-7 fw-bold ${textLightColor}`}
+                  style={{
+                    width: "200px",
+                    height: "30px",
+                    position: "relative",
+                  }}
+                >
+                  {props.class} Sessions
+                  <div
+                    style={{
+                      content: "",
+                      position: "absolute",
+                      right: "0",
+                      bottom: "0",
+                      width: "0",
+                      height: "0",
+                      borderRight: `30px solid ${ribbonColor}`,
+                      borderTop: "15px solid transparent",
+                      borderBottom: "15px solid transparent",
+                    }}
+                  ></div>
+                  <div
+                    style={{
+                      content: "",
+                      position: "absolute",
+                      left: "-20px",
+                      bottom: "0",
+                      width: "0",
+                      height: "0",
+                      borderRight: `30px solid ${ribbonColor}`,
+                    }}
+                  ></div>
+                </div>
+              </div>
+              <div className="col-4 d-flex align-items-center justify-content-end">
+                <div
+                  className={`${bgColorDarkClass} bottom-left quadrant fw-bolder text-center border-0 py-2 pe-2 ps-4`}
+                >
+                  20% off
+                </div>
               </div>
             </div>
-            <div className="col-4 d-flex align-items-center justify-content-end">
-              <div className="bottom-left quadrant fw-bolder text-center border-0 bg-dark-blue py-2 pe-2 ps-4">
-                20% off
-              </div>
+            <div className="card-header pb-0 border-0 bg-transparent">
+              <h5 className={`${textDarkColor}`}>{props.name}</h5>
+              <p className={`${textDarkColor}`}>
+                {[...Array(5)].map((_, i) => (
+                  <i
+                    key={i}
+                    className={`fa-solid fa-star ${
+                      i < props.star ? "fa-color" : "text-white"
+                    } me-2`}
+                  ></i>
+                ))}
+                ({props.rating} reviews)
+              </p>
             </div>
-          </div>
-          <div className="card-header bg-light-blue rounded-bottom pb-0 border-0">
-            <h5>{props.name}</h5>
-            <p>
-              {[...Array(5)].map((_, i) => (
-                <i
-                  key={i}
-                  className={`fa-solid fa-star ${
-                    i < props.star ? "fa-color" : "text-white"
-                  } me-2`}
-                ></i>
-              ))}
-              ({props.rating} reviews)
-            </p>
           </div>
           <div className="card-body text-dark bg-safed">
             <p>{props.content}</p>
@@ -51,8 +108,12 @@ export default function Card(props) {
           <div className="card-footer bg-safed border-0">
             <div className="row">
               <div className="col-6">
-                <h3 className="text-lato fw-bold">₹ {props.original_price}</h3>
-                <p>₹ {props.discounted_price}</p>
+                <h3 className="text-lato fw-bold">
+                  ₹ {props.discounted_price}
+                </h3>
+                <p className="text-decoration-line-through">
+                  ₹ {props.original_price}
+                </p>
               </div>
               <div className="col-6">
                 <h5 className="text-lato fw-bold">

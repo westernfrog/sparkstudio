@@ -99,12 +99,15 @@ a:hover {
   background-color: #905cff;
 }
 
+.text-purple {
+  color: #905cff;
+}
+
 /* Ribbons */
 .ribbon {
   width: 200px;
   height: 30px;
   position: relative;
-  background: #905cff;
 }
 
 .ribbon:after {
